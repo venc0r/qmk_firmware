@@ -34,4 +34,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _________________ADJUST_L3_________________, _________________ADJUST_R3_________________,
         ____THUMB_L____, ____THUMB_R____
     ),
+
+    [_NUMBER] = LAYOUT_wrapper(
+        ______________HM_COLEMAK_L0________________, ______________HM_COLEMAK_R0________________,
+        ______________HM_COLEMAK_L2________________, ______________HM_COLEMAK_R2________________,
+        ______________HM_COLEMAK_L3________________, ______________HM_COLEMAK_R3________________,
+        ____THUMB_L____, ____THUMB_R____
+    ),
 };

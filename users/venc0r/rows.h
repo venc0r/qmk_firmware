@@ -5,6 +5,7 @@
 #include "venc0r.h"
 
 #define RAISE LT(_RAISE, KC_SPC)
+#define NUMBER LT(_NUMBER, KC_TAB)
 #define SHIFT LSFT_T(KC_SPC)
 #define LOWER LT(_LOWER, KC_BSPC)
 #define CTRL  LCTL_T(KC_BSPC)
@@ -70,10 +71,13 @@
  * |  y  |  x  |  c  |  d  |  v  |        |  k  |  h  |  ,  |  .  |  /  |
  * `-----------------------------'        `-----------------------------'
  */
+
+#define ______________HM_COLEMAK_L0________________       KC_1,     KC_2,     KC_3,     KC_4,     KC_5
 #define ______________HM_COLEMAK_L1________________       KC_Q,     KC_W,     KC_F,     KC_P,     KC_B
 #define ______________HM_COLEMAK_L2________________       C_HOME_A, C_HOME_R, C_HOME_S, C_HOME_T, KC_G
 #define ______________HM_COLEMAK_L3________________       KC_Y,     KC_X,     KC_C,     KC_D,     KC_V
 
+#define ______________HM_COLEMAK_R0________________       KC_6,     KC_7,     KC_8,     KC_9,     KC_0
 #define ______________HM_COLEMAK_R1________________       KC_J,     KC_L,     KC_U,     KC_Z,     KC_SCLN
 #define ______________HM_COLEMAK_R2________________       KC_M,     C_HOME_N, C_HOME_E, C_HOME_I, C_HOME_O
 #define ______________HM_COLEMAK_R3________________       KC_K,     KC_H,     KC_COMM,  KC_DOT,   KC_SLASH
@@ -83,7 +87,7 @@
  *                   | TAB | SPC |        | BSP | ENT |
  *                   `-----------'        `-----------'
  */
-#define ____THUMB_L____ KC_TAB, RAISE
+#define ____THUMB_L____ NUMBER, RAISE
 #define ____THUMB_R____ LOWER, KC_ENT
 
 
