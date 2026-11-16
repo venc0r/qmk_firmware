@@ -1,6 +1,7 @@
 // Copyright 2021 Jörg Markert (@venc0r)
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <avr/wdt.h>
 #include "venc0r.h"
 
 #define LAYOUT_wrapper(...) LAYOUT_split_4x6_5(__VA_ARGS__)
@@ -79,38 +80,12 @@ combo_t key_combos[] = {
     [SZ_COMBO]   = COMBO(sz_combo, UM(SZ)),
 };
 
-static bool     umlaut_combos_enabled = false;
-static uint16_t last_key_press_time;
-static uint16_t first_key_after_idle_time;
-
-// Umlaut combos only fire on macOS (or after UM_TOGG) and only when their
-// first key starts a new burst of typing, like ZMK's require-prior-idle-ms.
-bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    if (combo_index == BOOT_COMBO) {
-        return true;
+// The controllers run Arduino's newer Caterina, which reads the boot key
+// from RAMEND-1; QMK only writes 0x0800, so QK_BOOT would just reset.
+void bootloader_jump(void) {
+    *(volatile uint16_t *)0x0800       = 0x7777;
+    *(volatile uint16_t *)(RAMEND - 1) = 0x7777;
+    wdt_enable(WDTO_60MS);
+    while (1) {
     }
-    return umlaut_combos_enabled && timer_elapsed(first_key_after_idle_time) <= COMBO_TERM;
-}
-
-bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (record->event.pressed) {
-        if (timer_elapsed(last_key_press_time) >= UMLAUT_PRIOR_IDLE_MS) {
-            first_key_after_idle_time = timer_read();
-        }
-        last_key_press_time = timer_read();
-    }
-    return true;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (keycode == UM_TOGG && record->event.pressed) {
-        umlaut_combos_enabled = !umlaut_combos_enabled;
-        return false;
-    }
-    return true;
-}
-
-bool process_detected_host_os_user(os_variant_t detected_os) {
-    umlaut_combos_enabled = detected_os == OS_MACOS || detected_os == OS_IOS;
-    return true;
 }

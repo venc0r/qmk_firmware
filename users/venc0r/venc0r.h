@@ -14,7 +14,3 @@ enum userspace_layers{
     _ADJUST,
     _GAME,
 };
-
-enum userspace_keycodes {
-    UM_TOGG = SAFE_RANGE,
-};
