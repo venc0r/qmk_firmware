@@ -53,3 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+
+const uint16_t PROGMEM boot_combo[] = {KC_Z, KC_Q, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(boot_combo, QK_BOOT),
+};
