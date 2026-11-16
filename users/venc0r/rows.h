@@ -295,7 +295,7 @@
 #define _______________Y_COLEMAK_L2________________       KC_LSFT, ______________HM_COLEMAK_L2________________
 #define _______________Y_COLEMAK_L3________________       KC_LCTL, ______________HM_COLEMAK_L3________________
 #define __Y_THUMB_L0___                                   ST_CTAB,   RAISE, KC_LSFT
-#define __Y_THUMB_L1___                                            KC_LGUI, KC_LALT
+#define __Y_THUMB_L1___                                              RAISE, KC_LALT
 
 
 #define _______________Y_COLEMAK_R0________________          KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______
